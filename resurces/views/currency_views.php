@@ -9,30 +9,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .currency-card {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 30px;
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .currency-section {
-            padding: 60px 0;
-        }
-
-        .info-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .btn-primary-custom {
-            background-color: #d32f2f;
-            border: none;
-        }
-    </style>
+    <link rel="stylesheet" href="resurces/views/style.css">
 </head>
 
 <body>
@@ -93,18 +70,11 @@
                 </div>
                 <p>
                     <?php
-                    if (isset($_GET['from'])  and isset($_GET['to'])) {
-                        if ($_GET['from'] == "UZS") {
-                            $total = $_GET['pul_miqdori'] / (int)$currency->getCurrencies()[$_GET['to']];
-                            echo $_GET['pul_miqdori'] . ' ' . $_GET['from'] . '=' . $total . ' ' . $_GET['to'];
-                        } elseif ($_GET['to'] == 'UZS') {
-                            $total = $_GET['pul_miqdori'] * (int)$currency->getCurrencies()[$_GET['from']];
-                            echo $_GET['pul_miqdori'] . ' ' . $_GET['from'] . '=' . $total . ' ' . $_GET['to'];
-                        } else {
-                            echo "Not found UZS currency";
-                            exit;
+                    global  $currency;
+                    if (isset($_GET['from']) and isset($_GET['to']) and isset($_GET['pul_miqdori'])) {
+                        $result = $currency->exchange((string)$_GET['from'], (string)$_GET['to'], (int)$_GET['pul_miqdori']);
+                        echo $result;
                         }
-                    }
                     ?>
                 </p>
                 <button type="submit" class="btn btn-primary btn-primary-custom mt-3">Convert</button>
@@ -112,11 +82,8 @@
         </div>
     </div>
     <div class="info-section bg-light">
-        <h4 class="fw-bold">Let’s save you some time</h4>
-        <p class="text-muted">If you’ve got a target exchange rate in mind but haven’t got time to keep tabs on market
-            movement, then a firm order could be perfect for you. When your chosen rate is reached, we’ll act immediately,
-            leaving you free to concentrate on your business.</p>
-        <button class="btn btn-outline-danger">Find out more</button>
+        <h4 class="fw-bold">If you want to see Tashkent weather information, click on the "Tashkent weather" button</h4>
+        <a href="weather.php" class="btn btn-outline-danger">Tashkent weather</a>
     </div>
 </body>
 

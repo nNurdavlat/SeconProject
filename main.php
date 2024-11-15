@@ -1,10 +1,10 @@
 <?php
-    require "Currency.php";
+    require "src/Currency.php";
 
     $currency = new Currency();
 
     $currencies = $currency->getCurrencies();
 
     
-    require "views/currency_views.php";
-?>
+    require "resurces/views/currency_views.php";
+
