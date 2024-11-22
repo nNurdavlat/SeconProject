@@ -29,17 +29,31 @@ if (isset($update)) {
 
     // Salomlashish uchun
     if ($text == '/start') {
-        $bot->saveUser($from_id, $user_name);
 
+            $bot->saveUser($from_id, $user_name); // Bot.php database ga yozib qo'yadi
 
-        $bot->makeRequest('sendMessage', [
-            'chat_id' => $from_id,
-            'text' => "Hello. You're Welcome"
-        ]);
+            $reply_keyboard = [ // Tugma qilish uchun
+                'keyboard' => [
+                    [
+                        ['text' => 'Ob havo'],
+                        ['text' => 'Valyuta'],
+                    ]
+                ],
+                'resize_keyboard' => true,
+            ];
+
+            $bot->makeRequest('sendMessage', [
+                'chat_id' => $from_id,
+                'text' => "Hello. You're Welcome",
+                'reply_markup' => json_encode($reply_keyboard),
+            ]);
     }
 
+
+
+
     // Valyutalarni ko'rish uchun
-    if ($text == '/currency') {
+    if ($text == '/currency' or $text == 'Valyuta') {
         $currencies = $currency->getCurrencies();
         $currencies_list = "";
 
@@ -53,7 +67,7 @@ if (isset($update)) {
     }
 
 
-    if ($text == '/weather') {
+    if ($text == '/weather' or $text == 'Ob havo') {
         $informations_list = "";
         $informations_list .= "Tashkent" . "\n";
         $informations_list .=  "Harorat: " . ($weather->getWeather()->main->temp - 273.15) . "°C" . "\n";

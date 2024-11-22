@@ -27,19 +27,19 @@
                         <input type="number" name="pul_miqdori" id="amount" class="form-control" placeholder="Amount" value="10000">
                     </div>
                     <div class="col-md-3 text-center">
-                        <select class="form-select" name="from">
-                            <option value="UZS">UZS</option>
+                        <select class="form-select" name="from">  <!--UI ga chiqaradi-->
+                            <option value="UZS">UZS</option> <!--Pul birliklar ichida UZS yo'qligi uchun o'zimiz qo'lbola qo'shib qo'ydik-->
                             <?php
                             $i = 1;
-                            global $currencies;
+                            global $currencies; // Bu currensies main.php dagi. List(Desak ham bo'ladi);
                             //[
                             //  'USD'=>12800,
                             //  'EUR'=>13600,
                             //  'RUB'=>125
                             // ]
-                            foreach ($currencies as $key => $curren) {
-                                if ($i <= 10) {
-                                    echo '<option value="' . $key . '">' . $key . '</option>';
+                            foreach ($currencies as $key => $curren) { // Key("USD") => Rate(12,800)
+                                if ($i <= 10) { // 10 b]pul birligini chiqarish uchun
+                                    echo '<option value="' . $key . '">' . $key . '</option>'; // Bu yerda valyutalarni taxlash uchun ishlatiladi
                                     $i++;
                                 } else {
                                     $i = 1;
@@ -53,7 +53,7 @@
                         <span>⇆</span>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-select" name="to">
+                        <select class="form-select" name="to"><!--Bu ikkinchi tarafiga yozish uchu 2-Pul birligi-->
                             <?php
                             foreach ($currencies as $key => $curren) {
                                 if ($i <= 10) {
@@ -68,9 +68,9 @@
                         </select>
                     </div>
                 </div>
-                <p>
+                <p> <!--Eng pasida javobi chiqadi-->
                     <?php
-                    global  $currency;
+                    global  $currency; //Bu main.php dagi obyekt olgan $currency
                     if (isset($_GET['from']) and isset($_GET['to']) and isset($_GET['pul_miqdori'])) {
                         $result = $currency->exchange((string)$_GET['from'], (string)$_GET['to'], (int)$_GET['pul_miqdori']);
                         echo $result;
@@ -83,7 +83,7 @@
     </div>
     <div class="info-section bg-light">
         <h4 class="fw-bold">If you want to see Tashkent weather information, click on the "Tashkent weather" button</h4>
-        <a href="/weather" class="btn btn-outline-danger">Tashkent weather</a>
+      <a href="/weather" class="btn btn-outline-danger">Tashkent weather</a> <!--  Eng pasida Weather bor o'shani qilganman-->
     </div>
 </body>
 

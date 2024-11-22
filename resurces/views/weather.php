@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<?php
-require "src/Weather.php";
-
-$weather = new Weather();
-
-?>
 <div class="container text-center">
     <h1 class="my-4">Weather in <span id="city-name">Tashkent</span></h1>
 
