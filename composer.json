@@ -1,0 +1,7 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "*",
+      "ext-json": "*",
+      "ext-pdo": "*"
+    }
+}
